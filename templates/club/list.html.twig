@@ -1,0 +1,33 @@
+{# Le nombre de formations est {{ formations|length }} #}
+
+{# {% set nbmax = 0 %}#}
+{#{% set nbt = 0 %}#}
+{#{% for f in formations %}#}
+{#    {% set nbmax = max(f.nb_participants,nbmax) %}#}
+{#    {% set nbt = nbt + f.nb_participants %}#}
+{#{% endfor %}#}
+{#Le nombre maximal des participants est : {{ nbmax }} <br>#}
+{#Le nombre Totale des participants est : {{ nbt }}#}
+{% for f in formations %}
+    {#    {%  if  f.Description is same as("formation theorique") %} #}
+    {#    {%  if  f.Description  == "formation theorique" %} #}
+    {#  {%  if  "theorique"  in f.Description %} #}
+{#    {% if f.nb_participants == nbmax %}#}
+        <ul>
+            <li><b>Ref: </b> {{ f.ref }}</li>
+            <li><b>Titre: </b> {{ f.Titre |upper }}</li>
+            <li><b>Description: </b> {{ f.Description }}</li>
+            <li><b>Date Début: </b> {{ f.date_debut }}</li>
+            <li><b>Date Fin: </b> {{ f.date_fin }}</li>
+            <li><b>Nombre de Participants:</b> {{ f.nb_participants }}</li>
+            {# "{{path('detail',{'id':f.ref }) }}" #}
+            {% if f.nb_participants  == 0 %}
+                <form action="{{path('detail',{'r':f.ref }) }}">
+                <button> Participer</button>
+                </form>
+                <a href="{{path('detail',{'r':f.ref }) }}"> Participer</a>
+            {% endif %}
+        </ul>
+{# {% endif %}#}
+    {#    {% endif %} #}
+{% endfor %}

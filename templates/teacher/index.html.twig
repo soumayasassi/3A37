@@ -1,20 +1,25 @@
-{% extends 'base.html.twig' %}
+<html>
+<head>
+    <link  rel="stylesheet" href="{{asset('css/style.css')}}", type = "text/css">
 
-{% block title %}Hello TeacherController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+</head>
+<body>
+<h1>Esprit Student</h1>
+<p>    Au sein d’Esprit, les associations et clubs remplissent plusieurs rôles étant donné la diversité des motivations qui animent ceux qui en sont à l’origine. Conscients de l’importance de la vie associative, les étudiants jouent un rôle important dans l’élaboration et la transmission des messages aux destinataires.
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    Ci-dessous la liste des clubs d’Esprit. N’hésitez pas à la compléter.
+</p>
+<img src="{{ asset ('images/logo.png') }}" alt="Example"/>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp/www/3A39/src/Controller/TeacherController.php'|file_link(0) }}">src/Controller/TeacherController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp/www/3A39/templates/teacher/index.html.twig'|file_link(0) }}">templates/teacher/index.html.twig</a></code></li>
-    </ul>
-</div>
-{% endblock %}
+
+</body>
+
+
+
+
+
+
+
+
+</html>
