@@ -63,4 +63,51 @@ class ClassroomController extends AbstractController
 
 
     }
+
+
+
+#[Route('/add3', name: 'addc3')]
+public function add3(Request  $request, ManagerRegistry $doctrine)
+{
+    $c = new Classroom() ;
+    $form = $this->createFormBuilder($c)
+        ->add('name')
+        ->add('ajouter')
+        ->getForm();
+    $form->handleRequest($request) ;
+    if ($form->isSubmitted())
+    { $em = $doctrine->getManager(); //créer une instance du entity manager doctrine orm symfony
+        $em->persist($c);
+        $em->flush();
+        return $this->redirectToRoute('readc');
+    }
+    return $this->renderForm("classroom/add.html.twig",
+        ["f"=>$form]) ;
+}
+    #[Route('/delete/{id}', name: 'deletestudent')]
+    public function delete( ManagerRegistry $doctrine,$id)
+    {$c = $doctrine->getRepository(Classroom::class)->find($id);
+        $em = $doctrine->getManager();
+        $em->remove($c);
+        $em->flush() ;
+            return $this->redirectToRoute('read_classroom');
+
+    }
+
+    #[Route('/update/{id}', name: 'updatestudent')]
+    public function update(Request  $request, ManagerRegistry $doctrine,$id)
+    {
+        $classroom = $doctrine->getRepository(Classroom::class)->find($id) ;
+        $form = $this->createForm(ClassroomType::class, $classroom);
+        $form->add('update', SubmitType::class) ;
+        $form->handleRequest($request);
+        if ($form->isSubmitted())
+        { $em = $doctrine->getManager();
+            $em->persist($classroom);
+            $em->flush();
+            return $this->redirectToRoute('read_classroom');
+        }
+        return $this->renderForm("classroom/update.html.twig",
+            ["f"=>$form]) ;
+    }
 }

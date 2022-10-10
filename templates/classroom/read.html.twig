@@ -8,8 +8,8 @@
         <tr>
             <td>  {{ c.id }}</td>
             <td>   {{ c.name }} </td>
-            <td> <a href="">Delete </a>
-                <a href="">Update </a>
+            <td> <a href="{{ path('deletestudent', {'id':c.id})}}">Delete </a>
+                <a href="{{ path('updatestudent', {'id':c.id} )}}">Update </a>
 
             </td>
         </tr>
