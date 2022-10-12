@@ -102,12 +102,27 @@ public function add3(Request  $request, ManagerRegistry $doctrine)
         $form->add('update', SubmitType::class) ;
         $form->handleRequest($request);
         if ($form->isSubmitted())
-        { $em = $doctrine->getManager();
-            $em->persist($classroom);
+        { $em = $doctrine->getManager() ;
             $em->flush();
             return $this->redirectToRoute('read_classroom');
         }
         return $this->renderForm("classroom/update.html.twig",
             ["f"=>$form]) ;
+    }
+
+    #[Route('/add2', name: 'addc2')]
+    public function  add2(ManagerRegistry $doctrine , Request $request) : Response
+    { $c = new Classroom() ;
+        if($request->isMethod('POST'))
+        { $c->setName($request->get('name'));
+            $em = $doctrine->getManager();
+            $em->persist($c);
+            $em->flush();
+            return $this->redirectToRoute('readc');
+        }
+        return $this->render('classroom/add2.html.twig');
+
+
+
     }
 }
